@@ -1,25 +1,22 @@
 const mysql = require("mysql2");
 const path = require('path');
 
-require('dotenv').config({ path: path.join(__dirname, '..', 'database', '.env') });
-require('dotenv').config(); 
+// ហៅ dotenv ម្ដងទៀតក្នុង File នេះដើម្បីការពារ error
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const db = mysql.createConnection({
-  host: process.env.HOST,        // ត្រូវនឹង Render
-  user: process.env.USERNAME,    // ត្រូវនឹង Render
-  password: process.env.PASSWORD, // ត្រូវនឹង Render
-  database: process.env.DATABASE, // ត្រូវនឹង Render
-  port: process.env.DB_PORT || 4000, // ប្រើ DB_PORT ដែលទើបកែ
-  ssl: {
-    rejectUnauthorized: false    // ត្រូវតែមានដើម្បីភ្ជាប់ទៅ TiDB
-  }
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
 
 db.connect((err) => {
   if (err) {
-    console.error("❌ Database connection failed:", err.message);
+    console.error("❌ MySQL connection failed:", err);
   } else {
-    console.log("✅ Connected to TiDB Cloud!");
+    console.log("✅ Connected to MySQL using .env in database folder");
   }
 });
 

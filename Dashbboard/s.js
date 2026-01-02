@@ -97,7 +97,7 @@ function loadPage(page, title) {
     }
 
     // Initial load of all data
-    fetch('https://rithipul-backend.onrender.com/api/homepage/getlist')
+    fetch('http://localhost:1000/api/homepage/getlist')
       .then(res => res.json())
       .then(result => renderTable(result.data))
       .catch(() => {
@@ -108,7 +108,7 @@ function loadPage(page, title) {
     // Attach search event
     const btn_search = document.getElementById("btn_search");
     const typeSearch = document.getElementById("typeSearch");
-    const apiSearch = "https://rithipul-backend.onrender.com/api/homepage/search";
+    const apiSearch = "http://localhost:1000/api/homepage/search";
 
     btn_search.addEventListener("click", () => {
       const selectedType = typeSearch.value;
@@ -143,7 +143,7 @@ function loadPage(page, title) {
 function deleteItem(id) {
   if (!confirm("Are you sure you want to delete this item?")) return;
 
-  fetch(`https://rithipul-backend.onrender.com/api/homepage/remove/${id}`, {
+  fetch(`http://localhost:1000/api/homepage/remove/${id}`, {
     method: "DELETE"
   })
     .then(res => {
@@ -267,7 +267,7 @@ function submitUpdate() {
 
   const id = document.getElementById("update_id").value;
 
-  fetch(`https://rithipul-backend.onrender.com/api/homepage/update/${id}`, {
+  fetch(`http://localhost:1000/api/homepage/update/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
@@ -397,7 +397,7 @@ function submitAdd() {
 
   };
 
-  fetch("https://rithipul-backend.onrender.com/api/homepage/create", {
+  fetch("http://localhost:1000/api/homepage/create", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)

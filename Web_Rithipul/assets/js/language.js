@@ -13,7 +13,7 @@ const apiMap = {
   // achievement: "http://localhost:1000/api/achievement/getlist",
   plans: "http://localhost:1000/api/newplan/getlist",
   teams: "http://localhost:1000/api/team/getlist",
-  home: "http://localhost:1000/api/homepage/getlist",
+  home: "https://rithipul-backend.onrender.com/api/homepage/getlist",
   about: "http://localhost:1000/api/about/getlist"
 };
 // ==================================

@@ -48,7 +48,7 @@ function loadTeamPage() {
     if (!type) return alert("Please select a type");
 
     // fetch from search API
-    fetch(`http://localhost:1000/api/team/search?keyword=${encodeURIComponent(type)}`)
+    fetch(`https://rithipul-backend.onrender.com/api/team/search?keyword=${encodeURIComponent(type)}`)
       .then(res => res.json())
       .then(data => renderTableTeam(data))
       .catch(err => console.error(err));
@@ -61,7 +61,7 @@ function loadTeamPage() {
 let TEAM_CACHE = [];
 
 function fetchTeamData(type = "") {
-  let url = "http://localhost:1000/api/team/getlist";
+  let url = "https://rithipul-backend.onrender.com/api/team/getlist";
   if (type) url += `?type=${type}`;
 
   fetch(url)
@@ -132,7 +132,7 @@ function renderTableTeam(data) {
 function deleteItemTeam(id) {
   if (!confirm("Are you sure?")) return;
 
-  fetch(`http://localhost:1000/api/team/remove/${id}`, { method: "DELETE" })
+  fetch(`https://rithipul-backend.onrender.com/api/team/remove/${id}`, { method: "DELETE" })
     .then(res => res.json())
     .then(() => fetchTeamData());
 }
@@ -164,7 +164,7 @@ function submitUpdateTeam() {
   const id = document.getElementById("edit_id").value;
   const data = getFormData("edit");
 
-  fetch(`http://localhost:1000/api/team/update/${id}`, {
+  fetch(`https://rithipul-backend.onrender.com/api/team/update/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
@@ -186,7 +186,7 @@ function openAddModalTeam() {
 function submitAddTeam() {
   const data = getFormData("add");
 
-  fetch("http://localhost:1000/api/team/create", {
+  fetch("https://rithipul-backend.onrender.com/api/team/create", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)

@@ -11,10 +11,10 @@ const apiMap = {
   // mission: "http://localhost:1000/api/mision/getlist",
   // curriculum: "http://localhost:1000/api/curriculum/getlist",
   // achievement: "http://localhost:1000/api/achievement/getlist",
-  plans: "http://localhost:1000/api/newplan/getlist",
-  teams: "http://localhost:1000/api/team/getlist",
+  plans: "https://rithipul-backend.onrender.com/api/newplan/getlist",
+  teams: "https://rithipul-backend.onrender.com/api/team/getlist",
   home: "https://rithipul-backend.onrender.com/api/homepage/getlist",
-  about: "http://localhost:1000/api/about/getlist"
+  about: "https://rithipul-backend.onrender.com/api/about/getlist"
 };
 // ==================================
 // Language Switch Function

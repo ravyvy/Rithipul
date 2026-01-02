@@ -5,12 +5,12 @@ let currentLanguage = 'en'; // Default language
 const languageSelect = document.getElementById('languageSelect');
 
 const apiMap = {
-  // services: "http://localhost:1000/api/service/getlist",
-  // values: "http://localhost:1000/api/values/getlist",
-  // milestone: "http://localhost:1000/api/milestone/getlist",
-  // mission: "http://localhost:1000/api/mision/getlist",
-  // curriculum: "http://localhost:1000/api/curriculum/getlist",
-  // achievement: "http://localhost:1000/api/achievement/getlist",
+  // services: "https://rithipul-backend.onrender.com/api/service/getlist",
+  // values: "https://rithipul-backend.onrender.com/api/values/getlist",
+  // milestone: "https://rithipul-backend.onrender.com/api/milestone/getlist",
+  // mission: "https://rithipul-backend.onrender.com/api/mision/getlist",
+  // curriculum: "https://rithipul-backend.onrender.com/api/curriculum/getlist",
+  // achievement: "https://rithipul-backend.onrender.com/api/achievement/getlist",
   plans: "https://rithipul-backend.onrender.com/api/newplan/getlist",
   teams: "https://rithipul-backend.onrender.com/api/team/getlist",
   home: "https://rithipul-backend.onrender.com/api/homepage/getlist",

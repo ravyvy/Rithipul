@@ -47,7 +47,7 @@ function loadAboutPage() {
     const type = typesearch.value;
     if (!type) return alert("Please select a type");
 
-    fetch(`http://localhost:1000/api/about/search?keyword=${encodeURIComponent(type)}`)
+    fetch(`https://rithipul-backend.onrender.com/api/about/search?keyword=${encodeURIComponent(type)}`)
       .then(res => res.json())
       .then(data => renderTableAbout(data))
       .catch(err => console.error(err));
@@ -60,7 +60,7 @@ function loadAboutPage() {
 let ABOUT_CACHE = [];
 
 function fetchAboutData(type = "") {
-  let url = "http://localhost:1000/api/about/getlist";
+  let url = "https://rithipul-backend.onrender.com/api/about/getlist";
   if (type) url += `?type=${type}`;
 
   fetch(url)
@@ -133,7 +133,7 @@ function renderTableAbout(data) {
 function deleteItemAbout(id) {
   if (!confirm("Are you sure?")) return;
 
-  fetch(`http://localhost:1000/api/about/remove/${id}`, { method: "DELETE" })
+  fetch(`https://rithipul-backend.onrender.com/api/about/remove/${id}`, { method: "DELETE" })
     .then(res => res.json())
     .then(() => fetchAboutData());
 }
@@ -162,7 +162,7 @@ function submitUpdateAbout() {
   const id = document.getElementById("edit_id").value;
   const data = getFormDataAbout("edit");
 
-  fetch(`http://localhost:1000/api/about/update/${id}`, {
+  fetch(`https://rithipul-backend.onrender.com/api/about/update/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
@@ -184,7 +184,7 @@ function openAddModalAbout() {
 function submitAddAbout() {
   const data = getFormDataAbout("add");
 
-  fetch("http://localhost:1000/api/about/create", {
+  fetch("https://rithipul-backend.onrender.com/api/about/create", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)

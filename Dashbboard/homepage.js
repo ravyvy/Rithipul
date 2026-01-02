@@ -63,7 +63,7 @@ function loadHomePage() {
 
 // ================= Fetch Table Data =================
 function fetchHomeData() {
-  fetch("http://localhost:1000/api/homepage/getlist")
+  fetch("https://rithipul-backend.onrender.com/api/homepage/getlist")
     .then(res => res.json())
     .then(result => renderTable(result.data))
     .catch(() => {
@@ -107,7 +107,7 @@ function renderTable(data) {
 function deleteItem(id) {
   if (!confirm("Are you sure you want to delete this item?")) return;
 
-  fetch(`http://localhost:1000/api/homepage/remove/${id}`, { method: "DELETE" })
+  fetch(`https://rithipul-backend.onrender.com/api/homepage/remove/${id}`, { method: "DELETE" })
     .then(res => res.json())
     .then(() => { alert("Deleted successfully!"); fetchHomeData(); })
     .catch(err => { console.error(err); alert("Error deleting item"); });
@@ -190,7 +190,7 @@ function submitUpdate() {
   };
   const id = document.getElementById("update_id").value;
 
-  fetch(`http://localhost:1000/api/homepage/update/${id}`, {
+  fetch(`https://rithipul-backend.onrender.com/api/homepage/update/${id}`, {
     method: "PUT",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(data)
@@ -268,7 +268,7 @@ function submitAdd() {
     logo: document.getElementById("logo").value
   };
 
-  fetch("http://localhost:1000/api/homepage/create", {
+  fetch("https://rithipul-backend.onrender.com/api/homepage/create", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(data)

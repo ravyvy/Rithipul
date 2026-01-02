@@ -44,7 +44,7 @@ function loadPlanPage() {
     if (!type) return alert("Please select a type");
 
     // fetch from search API
-    fetch(`http://localhost:1000/api/newplan/search?keyword=${encodeURIComponent(type)}`)
+    fetch(`https://rithipul-backend.onrender.com/api/newplan/search?keyword=${encodeURIComponent(type)}`)
       .then(res => res.json())
       .then(data => renderTablePlan(data))
       .catch(err => console.error(err));
@@ -57,7 +57,7 @@ function loadPlanPage() {
 let PLAN_CACHE = [];
 
 function fetchPlanData(type = "") {
-  let url = "http://localhost:1000/api/newplan/getlist";
+  let url = "https://rithipul-backend.onrender.com/api/newplan/getlist";
   if (type) url += `?type=${type}`;
 
   fetch(url)
@@ -121,7 +121,7 @@ function renderTablePlan(data) {
 function deleteItemPlan(id) {
   if (!confirm("Are you sure?")) return;
 
-  fetch(`http://localhost:1000/api/newplan/remove/${id}`, { method: "DELETE" })
+  fetch(`https://rithipul-backend.onrender.com/api/newplan/remove/${id}`, { method: "DELETE" })
     .then(res => res.json())
     .then(() => fetchPlanData());
 }
@@ -149,7 +149,7 @@ function submitUpdatePlan() {
   const id = document.getElementById("edit_id").value;
   const data = getFormDataPlan("edit");
 
-  fetch(`http://localhost:1000/api/newplan/update/${id}`, {
+  fetch(`https://rithipul-backend.onrender.com/api/newplan/update/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
@@ -171,7 +171,7 @@ function openAddModalPlan() {
 function submitAddPlan() {
   const data = getFormDataPlan("add");
 
-  fetch("http://localhost:1000/api/newplan/create", {
+  fetch("https://rithipul-backend.onrender.com/api/newplan/create", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)

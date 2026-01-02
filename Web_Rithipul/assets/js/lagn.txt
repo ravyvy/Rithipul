@@ -1,0 +1,4 @@
+ <section class="hero">
+            <h1 data-en="Welcome to Language Switcher" data-kh="សូមស្វាគមន៍មកកាន់កម្មវិធីប្តូរភាសា">Welcome to Language Switcher</h1>
+            <p data-en="Experience seamless language switching between English and Khmer" data-kh="មានបទពិសោធន៍ការប្តូរភាសាដោយរលូនរវាងភាសាអង់គ្លេស និងខ្មែរ">Experience seamless language switching between English and Khmer</p>
+      </section>

@@ -1,0 +1,64 @@
+/* Global */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Sidebar for Desktop */
+.sidebar {
+    height: 100vh;
+    background: white;
+    border-right: 1px solid #dee2e6;
+    position: sticky;
+    top: 0;
+   
+    z-index: 100;
+}
+
+/* Sidebar for Mobile */
+@media (max-width: 767.98px) {
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 260px;
+        transform: translateX(-100%); /* លាក់ទៅឆ្វេង */
+        transition: transform 0.3s ease-in-out;
+        z-index: 1100;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+    }
+    
+    /* នៅពេលថែម Class show ឱ្យវាបង្ហាញមកវិញ */
+    .sidebar.show {
+        transform: translateX(0);
+    }
+}
+
+/* Overlay ខ្មៅស្រអាប់ពេលបើក Sidebar លើ Mobile */
+#sidebarOverlay.active {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 1050;
+}
+
+/* Links Styling */
+.nav-link {
+    color: #495057;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: 0.3s;
+}
+
+/* .nav-link:hover, .nav-link.active {
+    background-color: #f1f3f5;
+    color: rgb(22, 72, 138) !important;
+    
+} */

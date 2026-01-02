@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+      <link href="../Web_Rithipul/assets/img/Trainer Center Logo 30X30.png" rel="icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard-Rithipul</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-lg-2 col-md-3 sidebar ">
+            <div class="text-center my-3">
+                <img src="../Web_Rithipul/assets/img/Trainer Center Logo 30X30.png" width="60" alt="Logo">
+            </div>
+            <ul class="nav flex-column px-2">
+                <li class="nav-item"><a class="nav-link" data-page="home" href="#">Home </a></li>
+                <li class="nav-item"><a class="nav-link" data-page="team" href="#">Our Team</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="plan" href="#">Plans</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="about" href="#">About</a></li>
+            </ul>
+        </nav>
+        <main class="col-lg-10 col-md-9 ms-sm-auto px-0">
+            <nav class="navbar navbar-light bg-white border-bottom sticky-top px-3">
+                <button class="btn btn-outline-secondary d-md-none" id="toggleSidebar">☰</button>
+                <h4 class="h5 mb-0 ms-3" id="page-title">Home</h4>
+            </nav>
+            <div class="p-4" id="content">
+
+            </div>
+        </main>
+    </div>
+</div>
+
+<div id="sidebarOverlay" class="d-none"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+<script src="homepage.js"></script>
+<script src="team.js"></script>
+<script src="plan.js"></script>
+<script src="about.js"></script>
+
+</body>
+<script>
+    async function checkAdminProfile() {
+    const token = localStorage.getItem("admin_token");
+    
+    try {
+        const res = await fetch("http://localhost:1000/api/admin/profile", {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        const data = await res.json();
+
+        if (res.status === 401) {
+            // 🔴 បើ Token ផុតកំណត់ ឬខុស វានឹងចូលមកទីនេះ
+            alert("Session របស់អ្នកអស់សុពលភាពហើយ សូម Login ម្តងទៀត!");
+            localStorage.removeItem("admin_token"); // លុប Token ចោល
+            window.location.href = "login.html";    // រុញទៅទំព័រ Login
+            return;
+        }
+
+        console.log("Welcome:", data.user.username);
+    } catch (err) {
+        console.error("Server error");
+    }
+}
+// ហៅ Function នេះមកប្រើពេលបើក Dashboard ភ្លាម
+checkAdminProfile();
+</script>
+</html>

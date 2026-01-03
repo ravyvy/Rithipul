@@ -7,14 +7,15 @@ function loadHomePage() {
           <option value="">-- Select Type --</option>
           <option value="service">service</option>
           <option value="milestone">milestone</option>
-          <option value="vission">vission</option>
+          <option value="vision">vision</option>
           <option value="values">values</option>
           <option value="curriculum">curriculum</option>
           <option value="achievement">achievement</option>
+          <option value="head_home">head_home</option>
         </select>
-        <button class="btn text-white" id="btn_search"style="background: rgb(22, 72, 138) ;">Search</button>
+        <button class="btn text-white" id="btn_search" style="background: rgb(22, 72, 138);">Search</button>
       </div>
-      <button class="btn text-white btn-sm ms-3" style="width:80px;height:38px;background: rgba(183, 145, 68, 1);"onclick="addModel()">Add</button>
+      <button class="btn text-white btn-sm ms-3" style="width:80px;height:38px;background: rgba(183, 145, 68, 1);" onclick="addModel()">Add</button>
     </div>
 
     <div class="card shadow-sm">
@@ -28,10 +29,16 @@ function loadHomePage() {
                 <th style="min-width: 250px;">Category (KH)</th>
                 <th style="min-width: 400px;">Description (EN)</th>
                 <th style="min-width: 400px;">Description (KH)</th>
+                <th style="min-width: 200px;">Slogan GP (EN)</th>
+                <th style="min-width: 200px;">Slogan GP (KH)</th>
+                <th style="min-width: 200px;">Slogan (EN)</th>
+                <th style="min-width: 200px;">Slogan (KH)</th>
+                <th style="min-width: 200px;">Accredited (EN)</th>
+                <th style="min-width: 200px;">Accredited (KH)</th>
                 <th style="min-width: 80px;">Icon</th>
                 <th style="min-width: 100px;">Image</th>
                 <th style="min-width: 80px;">Year</th>
-                <th style="min-width: 80px;">logo</th>
+                <th style="min-width: 80px;">Logo</th>
                 <th style="min-width: 100px;">Type</th>
                 <th style="min-width: 150px;">Action</th>
               </tr>
@@ -45,14 +52,14 @@ function loadHomePage() {
 
   fetchHomeData();
 
-  // Search
+  // Search functionality
   const btn_search = document.getElementById("btn_search");
   const typeSearch = document.getElementById("typeSearch");
 
   btn_search.addEventListener("click", () => {
     const type = typeSearch.value;
     if (!type) return alert("Please select a type");
-    fetch(`https://rithipul-backend.onrender.com/api/homepage/search?keyword=${encodeURIComponent(type)}`)
+    fetch(`http://localhost:1000/api/homepage/search?keyword=${encodeURIComponent(type)}`)
       .then(res => res.json())
       .then(data => renderTable(data))
       .catch(err => console.error(err));
@@ -68,7 +75,7 @@ function fetchHomeData() {
     .then(result => renderTable(result.data))
     .catch(() => {
       const tableBody = document.getElementById("table_body");
-      tableBody.innerHTML = `<tr><td colspan="10" class="text-center text-danger">Failed to load data.</td></tr>`;
+      tableBody.innerHTML = `<tr><td colspan="17" class="text-center text-danger">Failed to load data.</td></tr>`;
     });
 }
 
@@ -77,7 +84,7 @@ function renderTable(data) {
   const tableBody = document.getElementById("table_body");
   tableBody.innerHTML = "";
   if (!data || data.length === 0) {
-    tableBody.innerHTML = `<tr><td colspan="10" class="text-center">No results found</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="17" class="text-center">No results found</td></tr>`;
     return;
   }
 
@@ -89,13 +96,19 @@ function renderTable(data) {
       <td>${item.category_kh || ''}</td>
       <td>${item.description_en || ''}</td>
       <td>${item.description_kh || ''}</td>
+      <td>${item.slogangp || ''}</td>
+      <td>${item.slogangp_kh || ''}</td>
+      <td>${item.slogan || ''}</td>
+      <td>${item.slogan_kh || ''}</td>
+      <td>${item.accredited_en || ''}</td>
+      <td>${item.accredited_kh || ''}</td>
       <td>${item.icon_path || ''}</td>
-      <td>${item.img ? `<img src="${item.img}"  style="height:auto; width:100px;">` : ''}</td>
+      <td>${item.img ? `<img src="${item.img}" style="height:auto; width:100px;">` : ''}</td>
       <td>${item.year || ''}</td>
-       <td>${item.logo ? `<img src="${item.logo}"  style="height:auto; width:60px;">` : ''}</td>
+      <td>${item.logo ? `<img src="${item.logo}" style="height:auto; width:60px;">` : ''}</td>
       <td>${item.type || ''}</td>
-      <td >
-        <button class="btn text-white btn-sm "style="background: rgba(183, 145, 68, 1);" onclick='openModal(${JSON.stringify(item)})'>Edit</button>
+      <td>
+        <button class="btn text-white btn-sm" style="background: rgba(183, 145, 68, 1);" onclick='openModal(${JSON.stringify(item)})'>Edit</button>
         <button class="btn btn-sm btn-danger" onclick="deleteItem(${item.id})">Delete</button>
       </td>
     `;
@@ -120,10 +133,10 @@ function openModal(item) {
 
   const modalHTML = `
   <div class="modal fade" id="dynamicModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Update Homepage</h5>
+          <h5 class="modal-title">Update Homepage Item</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
@@ -134,8 +147,16 @@ function openModal(item) {
               <div class="col-md-6"><label>Category (KH)</label><input type="text" class="form-control" id="category_kh"></div>
               <div class="col-md-6"><label>Description (EN)</label><textarea class="form-control" id="description_en"></textarea></div>
               <div class="col-md-6"><label>Description (KH)</label><textarea class="form-control" id="description_kh"></textarea></div>
+
+              <div class="col-md-6"><label>Slogan GP (EN)</label><input type="text" class="form-control" id="slogangp"></div>
+              <div class="col-md-6"><label>Slogan GP (KH)</label><input type="text" class="form-control" id="slogangp_kh"></div>
+              <div class="col-md-6"><label>Slogan (EN)</label><input type="text" class="form-control" id="slogan"></div>
+              <div class="col-md-6"><label>Slogan (KH)</label><input type="text" class="form-control" id="slogan_kh"></div>
+              <div class="col-md-6"><label>Accredited By (EN)</label><input type="text" class="form-control" id="accredited_en"></div>
+              <div class="col-md-6"><label>Accredited By (KH)</label><input type="text" class="form-control" id="accredited_kh"></div>
+
               <div class="col-md-4"><label>Year</label><input type="number" class="form-control" id="year"></div>
-              <div class="col-md-4"><label>logo</label><input type="text" class="form-control" id="logo"></div>
+              <div class="col-md-4"><label>Logo URL</label><input type="text" class="form-control" id="logo"></div>
               <div class="col-md-4"><label>Type</label>
                 <select class="form-control" id="type">
                   <option value="">-- Select Type --</option>
@@ -145,10 +166,11 @@ function openModal(item) {
                   <option value="values">values</option>
                   <option value="curriculum">curriculum</option>
                   <option value="achievement">achievement</option>
+                  <option value="head_home">head_home</option>
                 </select>
               </div>
-              <div class="col-md-4"><label>Icon Path</label><input type="text" class="form-control" id="icon_path"></div>
-              <div class="col-md-4"><label>Image</label><input type="text" class="form-control" id="img"></div>
+              <div class="col-md-6"><label>Icon Path</label><input type="text" class="form-control" id="icon_path"></div>
+              <div class="col-md-6"><label>Image URL</label><input type="text" class="form-control" id="img"></div>
             </div>
           </form>
         </div>
@@ -162,11 +184,18 @@ function openModal(item) {
 
   document.body.insertAdjacentHTML('beforeend', modalHTML);
 
+  // Populate fields
   document.getElementById("update_id").value = item.id;
   document.getElementById("category_en").value = item.category_en || "";
   document.getElementById("category_kh").value = item.category_kh || "";
   document.getElementById("description_en").value = item.description_en || "";
   document.getElementById("description_kh").value = item.description_kh || "";
+  document.getElementById("slogangp").value = item.slogangp || "";
+  document.getElementById("slogangp_kh").value = item.slogangp_kh || "";
+  document.getElementById("slogan").value = item.slogan || "";
+  document.getElementById("slogan_kh").value = item.slogan_kh || "";
+  document.getElementById("accredited_en").value = item.accredited_en || "";
+  document.getElementById("accredited_kh").value = item.accredited_kh || "";
   document.getElementById("year").value = item.year || "";
   document.getElementById("logo").value = item.logo || "";
   document.getElementById("type").value = item.type || "";
@@ -182,6 +211,12 @@ function submitUpdate() {
     category_kh: document.getElementById("category_kh").value,
     description_en: document.getElementById("description_en").value,
     description_kh: document.getElementById("description_kh").value,
+    slogangp: document.getElementById("slogangp").value,
+    slogangp_kh: document.getElementById("slogangp_kh").value,
+    slogan: document.getElementById("slogan").value,
+    slogan_kh: document.getElementById("slogan_kh").value,
+    accredited_en: document.getElementById("accredited_en").value,
+    accredited_kh: document.getElementById("accredited_kh").value,
     year: document.getElementById("year").value,
     logo: document.getElementById("logo").value,
     type: document.getElementById("type").value,
@@ -194,13 +229,18 @@ function submitUpdate() {
     method: "PUT",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(data)
-  }).then(res => res.json())
-    .then(() => { alert("Updated successfully!"); fetchHomeData(); })
-    .catch(err => { console.error(err); alert("Error updating data"); });
-
-  const modalEl = document.getElementById('dynamicModal');
-  bootstrap.Modal.getInstance(modalEl).hide();
-  modalEl.remove();
+  })
+  .then(res => res.json())
+  .then(() => {
+    alert("Updated successfully!");
+    fetchHomeData();
+    bootstrap.Modal.getInstance(document.getElementById('dynamicModal')).hide();
+    document.getElementById('dynamicModal').remove();
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Error updating data");
+  });
 }
 
 // ================= Add Modal =================
@@ -210,7 +250,7 @@ function addModel() {
 
   const modalHTML = `
   <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Add New Homepage Item</h5>
@@ -223,8 +263,16 @@ function addModel() {
               <div class="col-md-6"><label>Category (KH)</label><input type="text" class="form-control" id="add_category_kh"></div>
               <div class="col-md-6"><label>Description (EN)</label><textarea class="form-control" id="add_description_en"></textarea></div>
               <div class="col-md-6"><label>Description (KH)</label><textarea class="form-control" id="add_description_kh"></textarea></div>
+
+              <div class="col-md-6"><label>Slogan GP (EN)</label><input type="text" class="form-control" id="add_slogangp"></div>
+              <div class="col-md-6"><label>Slogan GP (KH)</label><input type="text" class="form-control" id="add_slogangp_kh"></div>
+              <div class="col-md-6"><label>Slogan (EN)</label><input type="text" class="form-control" id="add_slogan"></div>
+              <div class="col-md-6"><label>Slogan (KH)</label><input type="text" class="form-control" id="add_slogan_kh"></div>
+              <div class="col-md-6"><label>Accredited By (EN)</label><input type="text" class="form-control" id="add_accredited_en"></div>
+              <div class="col-md-6"><label>Accredited By (KH)</label><input type="text" class="form-control" id="add_accredited_kh"></div>
+
               <div class="col-md-4"><label>Year</label><input type="number" class="form-control" id="add_year"></div>
-              <div class="col-md-4"><label>logo</label><input type="text" class="form-control" id="logo"></div>
+              <div class="col-md-4"><label>Logo URL</label><input type="text" class="form-control" id="add_logo"></div>
               <div class="col-md-4"><label>Type</label>
                 <select class="form-control" id="add_type">
                   <option value="">-- Select Type --</option>
@@ -234,11 +282,11 @@ function addModel() {
                   <option value="values">values</option>
                   <option value="curriculum">curriculum</option>
                   <option value="achievement">achievement</option>
+                  <option value="head_home">head_home</option>
                 </select>
               </div>
-              <div class="col-md-4"><label>Icon Path</label><input type="text" class="form-control" id="add_icon_path"></div>
-              <div class="col-md-4"><label>Image</label><input type="text" class="form-control" id="add_img"></div>
-              <div class="col-md-4"><label>Logo</label><input type="text" class="form-control" id="logo"></div>
+              <div class="col-md-6"><label>Icon Path</label><input type="text" class="form-control" id="add_icon_path"></div>
+              <div class="col-md-6"><label>Image URL</label><input type="text" class="form-control" id="add_img"></div>
             </div>
           </form>
         </div>
@@ -260,23 +308,33 @@ function submitAdd() {
     category_kh: document.getElementById("add_category_kh").value,
     description_en: document.getElementById("add_description_en").value,
     description_kh: document.getElementById("add_description_kh").value,
+    slogangp: document.getElementById("add_slogangp").value,
+    slogangp_kh: document.getElementById("add_slogangp_kh").value,
+    slogan: document.getElementById("add_slogan").value,
+    slogan_kh: document.getElementById("add_slogan_kh").value,
+    accredited_en: document.getElementById("add_accredited_en").value,
+    accredited_kh: document.getElementById("add_accredited_kh").value,
     year: document.getElementById("add_year").value,
-    logo: document.getElementById("logo").value,
+    logo: document.getElementById("add_logo").value,
     type: document.getElementById("add_type").value,
     icon_path: document.getElementById("add_icon_path").value,
-    img: document.getElementById("add_img").value,
-    logo: document.getElementById("logo").value
+    img: document.getElementById("add_img").value
   };
 
   fetch("http://localhost:1000/api/homepage/create", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(data)
-  }).then(res => res.json())
-    .then(() => { alert("Added successfully!"); fetchHomeData(); })
-    .catch(err => { console.error(err); alert("Error adding data"); });
-
-  const modalEl = document.getElementById('addModal');
-  bootstrap.Modal.getInstance(modalEl).hide();
-  modalEl.remove();
+  })
+  .then(res => res.json())
+  .then(() => {
+    alert("Added successfully!");
+    fetchHomeData();
+    bootstrap.Modal.getInstance(document.getElementById('addModal')).hide();
+    document.getElementById('addModal').remove();
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Error adding data");
+  });
 }

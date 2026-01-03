@@ -5,20 +5,12 @@ let currentLanguage = 'en'; // Default language
 const languageSelect = document.getElementById('languageSelect');
 
 const apiMap = {
-  // services: "http://localhost:1000/api/service/getlist",
-  // values: "http://localhost:1000/api/values/getlist",
-  // milestone: "http://localhost:1000/api/milestone/getlist",
-  // mission: "http://localhost:1000/api/mision/getlist",
-  // curriculum: "http://localhost:1000/api/curriculum/getlist",
-  // achievement: "http://localhost:1000/api/achievement/getlist",
   plans: "http://localhost:1000/api/newplan/getlist",
   teams: "http://localhost:1000/api/team/getlist",
   home: "http://localhost:1000/api/homepage/getlist",
-  about: "https://rithipul-backend.onrender.comapi/about/getlist"
+  about: "http://localhost:1000/api/about/getlist"
 };
-// ==================================
-// Language Switch Function
-// ==================================
+ 
 function switchLanguage(lang) {
   if (currentLanguage === lang && document.documentElement.lang === lang) return;
 
@@ -51,187 +43,6 @@ async function fetchAndRender(url, renderCallback) {
     console.error("API Error:", err);
   }
 }
-// ==================================
-// Render Functions
-// ==================================
-// function renderServices(services) {
-//   const serviceList = document.getElementById("serviceList");
-//   if (!serviceList) return;
-//   if (!services.length) {
-//     serviceList.innerHTML = "<p>No services found</p>";
-//     return;
-//   }
-
-//   let html = '';
-//   services.forEach(item => {
-//     const descriptions = item.description ? item.description.split('-').filter(i => i.trim() !== "") : [];
-//     const descHtml = '<ul style="list-style: none; padding: 0;">' +
-//       descriptions.map(text => `<li>- ${text.trim()}</li>`).join('') +
-//       '</ul>';
-
-//     html += `
-//       <div class="col-lg-4">
-//         <div class="feature-card">
-//           <div class="feature-icon">
-//             <i class="${item.icon_path || 'bi bi-easel'}"></i>
-//           </div>
-//           <div class="feature-content title-font">
-//             <h3 data-en="${item.category_en}" data-kh="${item.category_kh}">${item.category_en}</h3>
-//             <div class="desc-text" data-en="${item.description}" data-kh="${item.description_kh}">
-//               ${descHtml}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     `;
-//   });
-
-//   serviceList.innerHTML = html;
-// }
-
-// function renderValues(values) {
-//   const valueList = document.getElementById("valueList");
-//   if (!valueList) return;
-//   if (!values.length) {
-//     valueList.innerHTML = "<p>No values found</p>";
-//     return;
-//   }
-
-//   let html = '';
-//   values.forEach(item => {
-//     html += `
-//       <div class="col">
-//         <div class="value-card">
-//           <div class="value-icon">
-//             <i class="${item.icon_path || 'bi bi-award-fill'}"></i>
-//           </div>
-//           <h4 data-en="${item.category_en}" data-kh="${item.category_kh}" style="color: rgb(19, 73, 138);">
-//             ${item.category_en} 
-//           </h4>
-//           <p data-en="${item.description_en}" data-kh="${item.description_kh}">
-//             ${item.description_en}
-//           </p>
-//         </div>
-//       </div>
-//     `;
-//   });
-
-//   valueList.innerHTML = html;
-// }
-
-// function renderMilestone(milestones) {
-//   const container = document.getElementById("timeline");
-//   if (!container) return;
-//   if (!milestones.length) {
-//     container.innerHTML = "<p>No milestones found</p>";
-//     return;
-//   }
-
-//   let html = '';
-//   milestones.forEach(item => {
-//     html += `
-//       <div class="timeline-item">
-//         <div class="timeline-dot"></div>
-//         <div class="timeline-content">
-//           <h4 data-en="${item.year}">${item.year}</h4>
-//           <p data-en="${item.text}" data-kh="${item.text_kh}">${item.text}</p>
-//         </div>
-//       </div>
-//     `;
-//   });
-
-//   container.innerHTML = html;
-// }
-
-// function renderMission(missions) {
-//   const container = document.getElementById("mision");
-//   if (!container) return;
-//   if (!missions.length) {
-//     container.innerHTML = "<p>No mission/vision found</p>";
-//     return;
-//   }
-
-//   let html = '';
-//   missions.forEach(item => {
-//     html += `
-//       <img src="${item.img}" alt="Campus" class="img-fluid rounded">
-//       <div class="mission-vision title-font text-center">
-//         <div class="mission">
-//           <h3 class="fw-bold" data-en="${item.title_mision}" data-kh="${item.title_mision_kh}">${item.title_mision}</h3>
-//           <p data-en="${item.mision}" data-kh="${item.mision_kh}">${item.mision}</p>
-//           <a href="about.html" data-kh="មើលបន្ថែម.....">See more...</a>
-//         </div>
-//         <div class="vision">
-//           <h3 class="fw-bold" data-en="${item.title_vision}" data-kh="${item.title_vision_kh}">${item.title_vision}</h3>
-//           <p data-en="${item.vision}" data-kh="${item.vision_kh}">${item.vision}</p>
-//           <a href="about.html" data-kh="មើលបន្ថែម.....">See more...</a>
-//         </div>
-//       </div>
-//     `;
-//   });
-
-//   container.innerHTML = html;
-// }
-
-// function renderCurriculum(curriculums) {
-//   const container = document.getElementById("curriculum");
-//   if (!container) return;
-//   if (!curriculums.length) {
-//     container.innerHTML = "<p>No curriculum found</p>";
-//     return;
-//   }
-
-//   let html = '';
-//   curriculums.forEach(item => {
-//     html += `
-//       <div class="col-xl-6">
-//         <article class="post-item d-flex" style="background-color: rgb(182, 135, 45);">
-//           <div class="post-img">
-//             <img src="${item.img}" alt="" class="img-fluid" loading="lazy">
-//           </div>
-//           <div class="post-content flex-grow-1">
-//             <p class="post-description text-white" data-en="${item.text}" data-kh="${item.text_kh}">
-//               ${item.text}
-//             </p>
-//           </div>
-//         </article>
-//       </div>
-//     `;
-//   });
-
-//   container.innerHTML = html;
-// }
-
-// function renderAchievement(achievements) {
-//   const container = document.getElementById("Achievement");
-//   if (!container) return;
-//   if (!achievements.length) {
-//     container.innerHTML = "<p>No achievements found</p>";
-//     return;
-//   }
-
-//   let html = '';
-//   achievements.forEach(item => {
-//     html += `
-//       <div class="col-lg-6 col-md-6">
-//         <div class="event-item">
-//           <div class="event-image">
-//             <img src="${item.img}" alt="Achievement" class="img-fluid">
-//             <div class="event-date-overlay">
-//               <span class="date"><img src="assets/img/achiment/youth.png" style="width: 40px;"></span>
-//             </div>
-//           </div>
-//           <div class="event-details">
-//             <p data-en="${item.text}" data-kh="${item.text_kh}">${item.text}</p>
-//           </div>
-//         </div>
-//       </div>
-//     `;
-//   });
-
-//   container.innerHTML = html;
-// }
-
 function renderPlans(plans) {
   const container = document.getElementById("plan");
   if (!container) return;
@@ -421,6 +232,7 @@ function renderHome(home) {
   const achievement = document.getElementById("Achievement");
   const serviceList = document.getElementById("serviceList");
   const vissionList = document.getElementById("vission");
+  const head_home = document.getElementById("head_home")
 
   // ✅ prevent crash on pages without these sections
   if (!home || !home.length) return;
@@ -431,6 +243,7 @@ function renderHome(home) {
   achievement && (achievement.innerHTML = "");
   serviceList && (serviceList.innerHTML = "");
   vissionList && (vissionList.innerHTML = "");
+  head_home && (head_home.innerHTML = "")
 
   home.forEach(item => {
     let card = "";
@@ -438,8 +251,47 @@ function renderHome(home) {
     // ✅ choose language once
     const title = currentLanguage === "kh" ? item.category_kh : item.category_en;
     const desc = currentLanguage === "kh" ? item.description_kh : item.description_en;
+    const slogangp = currentLanguage === "kh" ? item.slogangp_kh : item.slogangp;
+    const slogans = currentLanguage === "kh" ? item.slogan_kh : item.slogan;
+    const accrediteds = currentLanguage === "kh" ? item.accredited_kh : item.accredited_en;
+
 
     /* ================= SERVICES ================= */
+    if (item.type === "head_home" && head_home) {
+      card = `
+            <div class="col-lg-6  col-md-mb-5 hero-content" data-aos="fade-right" data-aos-delay="100">
+              <h2 style="color: rgb(22, 72, 138) ;" class="fw-bold title-font  " data-kh="${item.category_kh}"
+                data-en="${item.category_en}">
+                ${title}
+              </h2>
+              <h1 style="color: rgba(183, 145, 68, 1);" class="title-font  " data-kh="${item.description_kh}"
+                data-en="R${item.description_en}">
+                  ${desc}
+                </h1>
+              <p style="color: rgb(22, 72, 138); margin-top: -20px;" data-kh="${item.slogangp_kh}"
+                class="title-font" data-en="${slogangp}">${slogangp}</p>
+
+              <p class="title-font" style="color: gray;" data-kh="${item.slogan_kh}" data-en="${item.slogan}">${slogans}</p>
+                
+              <a href="#about" class="title-font text-white"
+                style="background-color: rgb(22, 72, 138); border-radius: 10px; padding: 10px;" data-kh="មើលច្រើនទៀត!"
+                data-en="SEE MORE!">SEE MORE!</a>
+            </div>
+          <div class="col-lg-6 hero-media" data-aos="zoom-in" data-aos-delay="200">
+    <img src="${item.img}" alt="Education" class="img-fluid main-image custom-hero-img">
+    
+    <div class="image-overlay">
+        <div class="badge-accredited" style="background-color: rgb(22, 72, 138);">
+            <i class="bi bi-patch-check-fill title-font"></i>
+            <span data-kh="${item.accredited_kh}" data-en="${item.accredited_en}">${accrediteds}</span>
+        </div>
+    </div>
+</div>
+
+      `;
+      head_home.insertAdjacentHTML("beforeend", card);
+    }
+
     if (item.type === "service" && serviceList) {
       card = `
         <div class="col-lg-4">
@@ -580,12 +432,14 @@ function renderAbout(about) {
   const training = document.getElementById("training");
   const who = document.getElementById("whoareyou");
   const imglogo = document.getElementById("imglogo");
+  const head_about = document.getElementById("head_about")
 
   if (!about || !about.length) return;
 
   training && (training.innerHTML = "");
   who && (who.innerHTML = "");
   imglogo && (imglogo.innerHTML = "");
+  head_about && (head_about.innerHTML = "")
 
   about.forEach(item => {
     let card = "";
@@ -594,6 +448,24 @@ function renderAbout(about) {
     const title = currentLanguage === "kh" ? item.category_kh : item.category_en;
     const desc = currentLanguage === "kh" ? item.description_kh : item.description_en;
 
+
+    if (item.type === "head_about" && head_about) {
+      card = `
+            <div class="col-lg-6">
+            <div class="about-content" data-aos="fade-up" data-aos-delay="200">
+              <p style="color: rgb(22, 72, 138) ; font-size: 25px;" class="fw-bold title-font " data-kh="${item.category_kh}" data-en="${item.category_en}"> 
+                ${title}</p>
+              <p style="color: rgb(22, 72, 138) ; text-align: justify" class=" title-font  " data-kh="${item.description_kh}" data_en="${item.description_en}">${desc}</p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="about-image" data-aos="zoom-in" data-aos-delay="300">
+              <img src="${item.img}" alt="Campus" class="img-fluid rounded">
+            </div>
+          </div>
+      `;
+      head_about.insertAdjacentHTML("beforeend", card);
+    }
     /* ================= FINANCIAL ================= */
     if (item.type === "Financial" && training) {
       card = `
@@ -721,12 +593,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
   switchLanguage(savedLanguage);
 
-  // fetchAndRender(apiMap.services, renderServices);
-  // fetchAndRender(apiMap.values, renderValues);
-  // fetchAndRender(apiMap.milestone, renderMilestone);
-  // fetchAndRender(apiMap.mission, renderMission);
-  // fetchAndRender(apiMap.curriculum, renderCurriculum);
-  // fetchAndRender(apiMap.achievement, renderAchievement);
   fetchAndRender(apiMap.plans, renderPlans);
   fetchAndRender(apiMap.teams, renderTeam);
   fetchAndRender(apiMap.home, renderHome);

@@ -110,7 +110,18 @@ h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
 }
-
+/* header home */
+.custom-hero-img {
+    width: 100%;        /* ឱ្យរូបភាពរីកពេញទទឹង Column */
+    height: 400px;      /* កំណត់កម្ពស់ថេរ (អ្នកអាចប្តូរតាមចិត្ត) */
+    object-fit: cover;  /* សំខាន់៖ ការពារកុំឱ្យរូបភាពទាញខូចរាង (Stretch) */
+    border-radius: 10px; /* បន្ថែមជ្រុងមូលបន្តិច (តាមការចង់បាន) */
+}
+@media (max-width: 768px) {
+    .custom-hero-img {
+        height: 250px; /* បន្ថយកម្ពស់ពេលមើលលើទូរស័ព្ទ */
+    }
+}
 Email Form Messages ------------------------------*/ .php-email-form .error-message {
   display: none;
   background: #df1529;

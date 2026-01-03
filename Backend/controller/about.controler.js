@@ -16,9 +16,9 @@ const about = async (req, res) => {
 };
 const create = async (req, res) => {
     try {
-    const {category_en , category_kh , description_en , description_kh , type , img_brand} = req.body;
-    const SQL =`INSERT INTO about (category_en , category_kh , description_en , description_kh , type , img_brand)
-    VALUES (? , ? , ? , ? , ? , ? );
+    const {category_en , category_kh , description_en , description_kh , type , img_brand , img} = req.body;
+    const SQL =`INSERT INTO about (category_en , category_kh , description_en , description_kh , type , img_brand , img)
+    VALUES (? , ? , ? , ? , ? , ? ,?);
     ` ;
     await db.promise().query(SQL,[
        category_en ,
@@ -26,7 +26,8 @@ const create = async (req, res) => {
        description_en,
        description_kh,
        type,
-       img_brand
+       img_brand,
+       img
     ]);
     res.status(201).json({
     message: "Created successfully"
@@ -38,12 +39,12 @@ const create = async (req, res) => {
 };
 const update = async (req, res) => {
     try {
-        const {category_en , category_kh , description_en , description_kh , type , img_brand} = req.body;
+        const {category_en , category_kh , description_en , description_kh , type , img_brand , img} = req.body;
         const {id} = req.params;
-        const SQL = `UPDATE about SET category_en=? , category_kh=? , description_en=? , description_kh=? , type=? , img_brand=?
-        WHERE id = ?
+        const SQL = `UPDATE about SET category_en=? , category_kh=? , description_en=? , description_kh=? , type=? , img_brand=? , img = ? 
+         WHERE id = ?
         `;
-        const params = [category_en , category_kh , description_en , description_kh , type , img_brand, id];
+        const params = [category_en , category_kh , description_en , description_kh , type , img_brand , img, id];
         await db.promise().query(SQL , params ,( err , data) => {
             if(data){
                 res.json({

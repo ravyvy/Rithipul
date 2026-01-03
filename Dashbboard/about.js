@@ -10,6 +10,7 @@ function loadAboutPage() {
         <option value="brand">Brand</option>
         <option value="vission">Vission</option>
         <option value="mission">Mission</option>
+        <option value="head_about">head_about</option>
       </select>
       <button class="btn text-white" id="btn_search" style="background: rgb(22, 72, 138);">Search</button>
     </div>
@@ -28,6 +29,7 @@ function loadAboutPage() {
             <th>Description (KH)</th>
             <th>Type</th>
             <th>Image Brand</th>
+            <th>img</th>
             <th width="150">Action</th>
           </tr>
         </thead>
@@ -110,6 +112,13 @@ function renderTableAbout(data) {
   </td>
 
   <td>
+    ${item.img
+      ? `<img src="${item.img}"
+              style="width:80px;height:80px;object-fit:cover;">`
+      : ""}
+  </td>
+
+  <td>
     <div class="d-flex gap-1">
       <button class="btn btn-sm text-white"
         style="background: rgba(183,145,68,1);"
@@ -153,6 +162,7 @@ function openEditModalAbout(id) {
   document.getElementById("edit_description_kh").value = item.description_kh || "";
   document.getElementById("edit_type").value = item.type || "";
   document.getElementById("edit_img_brand").value = item.img_brand || "";
+  document.getElementById("edit_img").value = item.img || "";
 
   new bootstrap.Modal(document.getElementById("aboutModal")).show();
 }
@@ -204,6 +214,7 @@ function getFormDataAbout(prefix) {
     description_kh: document.getElementById(`${prefix}_description_kh`).value,
     type: document.getElementById(`${prefix}_type`).value,
     img_brand: document.getElementById(`${prefix}_img_brand`).value,
+    img: document.getElementById(`${prefix}_img`).value,
   };
 }
 
@@ -258,8 +269,10 @@ function formFieldsAbout(p) {
         <option value="brand">Brand</option>
         <option value="vission">Vission</option>
         <option value="mission">Mission</option>
+        <option value="head_about">head_aount</option>
       </select>
     </div>
     <div class="col-md-6"><textarea id="${p}_img_brand" class="form-control" placeholder="Image URL"></textarea></div>
+    <div class="col-md-6"><textarea id="${p}_img" class="form-control" placeholder="Image   "></textarea></div>
   </div>`;
 }

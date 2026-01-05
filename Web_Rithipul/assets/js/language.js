@@ -8,9 +8,10 @@ const apiMap = {
   plans: "http://localhost:1000/api/newplan/getlist",
   teams: "http://localhost:1000/api/team/getlist",
   home: "http://localhost:1000/api/homepage/getlist",
-  about: "http://localhost:1000/api/about/getlist"
+  about: "http://localhost:1000/api/about/getlist",
+  careers: "http://localhost:1000/api/careers/getlist"
 };
- 
+
 function switchLanguage(lang) {
   if (currentLanguage === lang && document.documentElement.lang === lang) return;
 
@@ -586,6 +587,83 @@ function renderAbout(about) {
   });
 }
 
+function renderCareers(careers) {
+  const newcareers = document.getElementById("newcareers");
+ 
+ 
+  if (!careers.length) {
+    newcareers.innerHTML = "<p>No plan found</p>";
+    return;
+  }
+
+  let html = '';
+  careers.forEach(item => {
+
+    // ✅ choose language dynamically
+    const description = currentLanguage === "kh" ? item.description_kh : item.description_en;
+    const ntitledescription_en = currentLanguage === "kh" ? item.ntitledescription_kh : item.ntitledescription_en;
+    const hr_description = currentLanguage === "kh" ? item.hr_description_kh  : item.hr_description_en;
+    const  descriptionvideo = currentLanguage === "kh" ? item.descriptionvideo_kh : item.descriptionvideo_en;
+    const  ntitle = currentLanguage === "kh" ? item.ntitle_kh : item.ntitle_en;
+    const  jointeam = currentLanguage === "kh" ? item.jointeam_kh : item.jointeam_en;
+
+     
+    html += `
+                <!-- ================= LATEST UPDATES ================= -->
+                <div class="col-lg-6 mb-4">
+                    <h3 class="box-title title-font fw-bold"style="color: rgb(22, 72, 138) ;" data-en="${item.ntitle_en}" data-kh="${item.ntitle_kh}">${ntitle}</h3>
+                    <div class="placeholder-card">
+                        <img src="${item.post_img}"
+                            alt="news"
+                            onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg';">
+                    </div>
+                    <div class="placeholder-card-text">
+                        <h4 class="title-font fw-bold text-center" style="color: rgb(22,72,138)" data-en="${item.ntitledescription_en}" data-kh="${item.ntitledescription_kh}">${ntitledescription_en}</h4>
+                        <p class="title-font " style="color: black;" data-en="${item.description_en}" data-kh="${item.description_kh}">
+                            ${description}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ================= JOIN OUR TEAM ================= -->
+                <div class="col-lg-6">
+                    <h3 class="box-title title-font"style="color: rgb(22, 72, 138) ;" data-en="${item.jointeam_en}" data-kh="${item.jointeam_kh}">${jointeam}</h3>
+                    <div class="placeholder-card career-card">
+                      
+                        <ul>
+                        <p class="title-font text-black" data-en="${item.hr_description_en}" data-kh="${item.hr_description_kh}">${hr_description}</p>
+                        </ul>
+
+                        <a href="https://t.me/c/2613477324/2/341" class="cv-btn">
+                            Apply Now
+                        </a>
+                    </div>
+
+                    <!-- ================= CAREER VIDEO ================= -->
+                    <div class="career-video mt-4">
+                        <div class="video-wrapper">
+                            <iframe id="companyVideo" src="${item.link_video}"
+                                title="Company Culture Video"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"                                
+                               >
+                            </iframe>
+                        </div>
+                        <p class="small-text mt-2 mt-2 title-font text-black" data-en="${item.descriptionvideo_en}" data-kh="${item.descriptionvideo_kh}">
+                            ${descriptionvideo}
+                        </p>
+                    </div>
+
+                </div>
+
+    `;
+  });
+     newcareers.innerHTML = html;
+     
+    
+
+}
+
+
 // ==================================
 // Initialize
 // ==================================
@@ -597,15 +675,15 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchAndRender(apiMap.teams, renderTeam);
   fetchAndRender(apiMap.home, renderHome);
   fetchAndRender(apiMap.about, renderAbout);
-});
+  fetchAndRender(apiMap.careers, renderCareers);
 
+});
 // ==================================
 // Language Select Event
 // ==================================
 if (languageSelect) {
   languageSelect.addEventListener('change', e => switchLanguage(e.target.value));
 }
-
 // ==================================
 // Keyboard shortcut: Ctrl/Cmd + L
 // ==================================

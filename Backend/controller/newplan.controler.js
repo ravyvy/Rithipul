@@ -78,8 +78,6 @@ const remove = async (req, res) => {
             })
         }
         })
-       
-       
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Database error' });
@@ -95,7 +93,6 @@ const search = async (req, res) => {
          OR datestart LIKE ?
          OR title_kh LIKE ?
     `;
-
     const value = `%${keyword}%`;
 
     db.query(sql, [value, value, value], (err, result) => {

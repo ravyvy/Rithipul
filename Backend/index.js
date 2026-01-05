@@ -32,6 +32,10 @@ about(app);
 const admin = require("./router/admin.router");
 admin(app);
 
+// new careers 
+const careers = require ("./router/newcareers.router");
+careers(app);
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

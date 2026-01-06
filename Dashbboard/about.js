@@ -22,14 +22,14 @@ function loadAboutPage() {
       <table class="table table-hover table-sm align-middle">
         <thead class="table-dark">
           <tr>
-            <th>ID</th>
-            <th>Category (EN)</th>
-            <th>Category (KH)</th>
-            <th>Description (EN)</th>
-            <th>Description (KH)</th>
-            <th>Type</th>
-            <th>Image Brand</th>
-            <th>img</th>
+            <th style="min-width: 60px;">ID</th>
+            <th style="min-width: 250px;">Category (EN)</th>
+            <th style="min-width: 250px;">Category (KH)</th>
+            <th style="min-width: 250px;">Description (EN)</th>
+            <th style="min-width: 250px;">Description (KH)</th>
+            <th style="min-width: 250px;">Type</th>
+            <th style="min-width: 50px;">Image Brand</th>
+            <th style="min-width: 50px;">img</th>
             <th width="150">Action</th>
           </tr>
         </thead>

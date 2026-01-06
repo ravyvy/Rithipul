@@ -29,140 +29,201 @@
 
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
+       <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0px 20px 20px;
+        }
+ 
 
-    <style>
-        .news-career-section {
-            padding: 60px 0;
+        .jobs-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .box-title {
-            font-weight: 700;
-            margin-bottom: 25px;
-            border-left: 5px solid rgba(183, 145, 68, 1);
-            padding-left: 12px;
+        .job-card {
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .placeholder-card {
-            background: #ffffff;
-            border-radius: 5px;
-            padding: 7px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-            transition: 0.3s ease;
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
 
-            width: 100%;
-            /* បំពេញ container */
-            max-width: 550px;
-            /* តំលៃតែមួយលើ screen ធំ */
-            min-width: 300px;
-            /* width តិចបំផុត ប៉ុន្តែអាចកាត់តិចបន្តិច */
+        .job-icon {
+            flex: 0 0 80px;
+            margin-right: 20px;
+        }
+
+        .job-icon img {
+            width: 60px;
             height: auto;
         }
 
-        /* optional: media query សម្រាប់ screen តូច */
-        @media (max-width: 350px) {
-            .placeholder-card {
-                min-width: 90%;
-                /* បំពេញតិចតួច margin */
-            }
-        }
-
-        .placeholder-card-text {
-            background: #ffffff;
-            border-radius: 14px;
-            padding: 22px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-            transition: 0.3s ease;
-        }
-
-        .placeholder-card:hover {
-            transform: translateY(-6px);
-        }
-
-        .placeholder-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* crop តែរក្សាសមាមាត្រ */
-            display: block;
-        }
-
-        .placeholder-card h4 {
-            font-weight: 600;
+        .job-details h3 {
+            font-size: 24px;
+            color: #0a2463;
             margin-bottom: 10px;
         }
 
-        .placeholder-card p {
-            color: #6c757d;
-            line-height: 1.7;
-        }
-
-        /* Career section */
-        .career-card ul {
-            padding-left: 18px;
+        .job-details .close-date {
+            font-size: 16px;
+            color: #4b5563;
             margin-bottom: 15px;
         }
 
-        .career-card ul li {
-            margin-bottom: 8px;
-            color: #495057;
-        }
-
-        .small-text {
+        .job-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
             font-size: 14px;
-            color: #6c757d;
+            color: #6b7280;
         }
 
-        .cv-btn {
-            width: 100%;
-            padding: 12px;
-            background: rgb(22, 72, 138);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
+        .job-tags span {
+            display: flex;
+            align-items: center;
+        }
+
+        .job-tags i {
+            margin-right: 8px;
+            color: #3b82f6;
+        }
+
+        .urgent-badge {
+            margin-left: auto;
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
             font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
         }
 
-        .cv-btn:hover {
-            background: #084298;
-            color: #fff;
-        }
-
-        /* Career Video */
-        .career-video {
-            background: #ffffff;
-            border-radius: 14px;
-            padding: 18px;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-        }
-
-        .career-video h5 {
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
+        /* Modal Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            border: 0;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            align-items: center;
+            justify-content: center;
         }
-    </style>
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #aaa;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .modal h2 {
+            color: #0a2463;
+            margin-bottom: 20px;
+        }
+
+        .modal p {
+            margin-bottom: 20px;
+            color: #4b5563;
+        }
+
+        .apply-btn {
+            display: inline-block;
+            background-color: rgba(183, 145, 68, 1);
+            color: white;
+            text-align: center;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .apply-btn:hover {
+            background-color: rgba(183, 145, 68, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .job-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .job-icon {
+                margin-bottom: 15px;
+            }
+
+            .urgent-badge {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+        }
+
+        .page-title {
+            background-color: #e6edf0;
+
+        }
+
+        .page-title-container {
+            max-width: 1300px;
+            /* Desktop */
+            margin: auto;
+        }
+
+        /* Tablet */
+        @media (max-width: 992px) {
+            .page-title {
+                padding: 30px 15px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 576px) {
+            .page-title {
+                padding: 20px 15px;
+            }
+
+            .page-title h1 {
+                font-size: 22px;
+            }
+        }
+    </style>   
 </head>
 
 <body>
@@ -202,29 +263,57 @@
             </nav>
         </div>
     </header>
-     <!-- Page Title -->
-    <div class="page-title light-background">
-      <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0 title-font" style="color: rgba(183, 145, 68, 1);" class="title-font" data-kh="ព័ត៌មាន​និងការងារ"
-          data-en="New & Careers">New & Careers
-        </h1>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">new & Careers</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
-    <main style="width: 100%; max-width: 1100px; margin: auto; padding: 0 10px;">
-        
-        <div class="container news-career-section">
-            <div class="row" id="newcareers">
- 
+    <!-- Page Title -->
+    <div class="page-title">
+        <div class="page-title-container d-lg-flex justify-content-between align-items-center">
+            <h1 class="mb-2 mb-lg-0 title-font" style="color: rgba(183, 145, 68, 1);" data-kh="ព័ត៌មាន​និងការងារ"
+                data-en="New & Careers">
+                New & Careers
+            </h1>
 
+            <nav class="breadcrumbs">
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="current">New & Careers</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    </div><!-- End Page Title -->
+
+    <div class="container ">
+        <!-- Hero Section -->
+        <div class="hero" id="job_header">
+           
+        </div>
+
+        <!-- Job Listings Section -->
+        <div class="job-list">
+          
+            <div class="jobs-container" id="jobs-container">
+                <!-- Jobs will be added here via JavaScript -->
             </div>
         </div>
-    </main>
+
+    </div>
+
+    <!-- Modal Popup -->
+    <div id="jobModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="title-font" id="modal-title"></h2>
+            <p id="modal-close"></p>
+            <p id="modal-type"></p>
+            <p id="modal-dept"></p>
+            <p id="modal-location"></p>
+            <p>To apply for this position, please visit the official Rithipul careers page.</p>
+        <div id="apply_link">
+                <a href="#" target="_blank" class="apply-btn">Apply on OfficialSite</a>
+        </div>
+        </div>
+    </div>
+
+
     <!-- =======================Footer========================= -->
     <footer id="footer" class="footer position-relative light-background title-font ">
         <div class="container footer-top">
@@ -335,6 +424,70 @@
     <script src="assets/js/main.js"></script>
     <!-- language -->
     <script src="assets/js/language.js"></script>
+
+    <!-- data -->
+    <!-- <script>
+        const container = document.getElementById('jobs-container');
+        const briefcaseIcon = "https://png.pngtree.com/png-clipart/20240804/original/pngtree-plant-growing-from-coins-png-image_15701887.png";
+
+        // Fetch jobs from API
+        async function loadJobs() {
+            try {
+                const response = await fetch("http://localhost:1000/api/careers/getlist");
+                const result = await response.json();
+                const jobs = result.data;
+
+                jobs.forEach(job => {
+                    const card = document.createElement('div');
+                    card.className = 'job-card';
+                    card.innerHTML = `
+                <div class="job-icon">
+                    <img src="${job.image_url || briefcaseIcon}" alt="Briefcase Icon">
+                </div>
+                <div class="job-details">
+                    <h3 data-en="${job.title_en}" data-kh="${job.title_kh}">${job.title_en}</h3>
+                    <div class="close-date">Job Close: ${new Date(job.close_date).toLocaleDateString()}</div>
+                    <div class="job-tags">
+                        <span><i class="fas fa-clock"></i> ${job.type}</span>
+                        <span><i class="fas fa-building"></i> ${job.department}</span>
+                        <span><i class="fas fa-map-marker-alt"></i> ${job.location}</span>
+                    </div>
+                </div>
+                ${job.urgent ? '<div class="urgent-badge">🔥 Urgent</div>' : ''}
+            `;
+
+                    // Click on card to open modal
+                    card.addEventListener('click', () => {
+                        document.getElementById('modal-title').textContent = job.title_en;
+                        document.getElementById('modal-close').innerHTML = '<strong>Job Close:</strong> ' + new Date(job.close_date).toLocaleDateString();
+                        document.getElementById('modal-type').innerHTML = '<strong>Employment Type:</strong> ' + job.type;
+                        document.getElementById('modal-dept').innerHTML = '<strong>Department:</strong> ' + job.department;
+                        document.getElementById('modal-location').innerHTML = '<strong>Location:</strong> ' + job.location;
+                        document.getElementById('jobModal').style.display = 'flex';
+                    });
+
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error("Error loading jobs:", error);
+                container.innerHTML = "<p>Failed to load jobs. Please try again later.</p>";
+            }
+        }
+
+        // Modal controls
+        const modal = document.getElementById('jobModal');
+        const closeBtn = document.querySelector('.close');
+        closeBtn.onclick = () => { modal.style.display = 'none'; };
+        window.onclick = (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        // Load jobs on page load
+        loadJobs();
+    </script> -->
+
 
 </body>
 

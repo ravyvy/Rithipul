@@ -57,6 +57,7 @@ function loadPage(page, title) {
             case 'team': loadTeamPage(); break;
             case 'plan': loadPlanPage(); break;
             case 'about':loadAboutPage(); break;
+            case 'careers':loadCareersPage(); break;
             
             default:
                 contentDiv.innerHTML = `<div class="alert alert-info">${title} content is coming soon!</div>`;

@@ -8,6 +8,8 @@ function loadTeamPage() {
         <option value="founder">Founder</option>
         <option value="team">Team</option>
         <option value="hidden">TeamHidden</option>
+        <option value="gp_team">gp_team</option>
+
       </select>
       <button class="btn text-white" id="btn_search" style="background: rgb(22, 72, 138) ;">Search</button>
     </div>
@@ -260,6 +262,7 @@ function formFields(p) {
         <option value="founder">Founder</option>
         <option value="team">Team</option>
         <option value="hidden">Hidden</option>
+        <option value="gp_team">gp_team</option>
       </select>
     </div>
     <div class="col-md-4"><input id="${p}_image" class="form-control" placeholder="Image URL"></div>

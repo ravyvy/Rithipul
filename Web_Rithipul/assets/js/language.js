@@ -9,7 +9,7 @@ const apiMap = {
   teams: "http://localhost:1000/api/team/getlist",
   home: "http://localhost:1000/api/homepage/getlist",
   about: "http://localhost:1000/api/about/getlist",
-  careers: "http://localhost:1000/api/careers/getlist"
+  data:" http://localhost:1000/api/careers/getlist"
 };
 
 function switchLanguage(lang) {
@@ -66,7 +66,7 @@ function renderPlans(plans) {
         data-aos="fade-up">
 
         <div class="event-content w-100">
-          <h3 class="event-title h5 fw-bold text-dark mb-2"
+          <h3 class="event-title h5 fw-bold mb-2"style="color: rgb(22, 72, 138) ;"
               data-kh="${item.title_kh}"
               data-en="${item.title}">
             ${title}
@@ -101,12 +101,14 @@ function renderTeam(teams) {
   const founderRow = document.getElementById("founderRow");
   const teamRow = document.getElementById("teamRow");
   const hiddenRow = document.getElementById("hiddenRow");
+  const gp_team = document.getElementById("gp_team");
 
   if (!teams || !teams.length) return;
 
   founderRow && (founderRow.innerHTML = "");
   teamRow && (teamRow.innerHTML = "");
   hiddenRow && (hiddenRow.innerHTML = "");
+  gp_team && (gp_team.innerHTML = "")
 
   teams.forEach(item => {
     let card = "";
@@ -115,6 +117,16 @@ function renderTeam(teams) {
     const name = currentLanguage === "kh" ? item.full_name_kh || item.fullname_kh : item.full_name || item.fullname;
     const position = currentLanguage === "kh" ? item.position_kh : item.position_name;
 
+    /* ================= GP TEAM ================= */
+    if (item.type === "gp_team" && gp_team) {
+      card =`
+        <div class="organization-card">
+                <img src="${item.image_url || 'https://rithipul.com.kh/_assets/media/3cb53d4d5dda623470fcc4a54657ab6e.png'}"
+                  class="img-fluid mx-auto d-block" alt="Organization Logo">
+              </div>
+      `;
+      gp_team.insertAdjacentHTML("beforeend", card);
+    }
     /* ================= FOUNDER ================= */
     if (item.type === "founder" && founderRow) {
       card = `
@@ -354,11 +366,11 @@ function renderHome(home) {
     if (item.type === "curriculum" && curriculum) {
       card = `
         <div class="col-xl-6">
-          <article class="post-item d-flex" style="background-color: rgb(182, 135, 45);">
+          <article class="post-item d-flex" style="background-color: rgba(12, 56, 115, 1) ">
             <div class="post-img">
               <img src="${item.img}" class="img-fluid" loading="lazy">
             </div>
-            <div class="post-content flex-grow-1">
+            <div class="post-content flex-grow-1 align-items-center ">
               <p class="post-description text-white "
                  data-en="${item.description_en}"
                  data-kh="${item.description_kh}">
@@ -586,83 +598,122 @@ function renderAbout(about) {
     }
   });
 }
+// ======================================
+// careers jobs page newcareers
+// ======================================
+const container = document.getElementById("jobs-container");
+const headerJobs = document.getElementById("job-header")
+const briefcaseIcon =
+"https://png.pngtree.com/png-clipart/20240804/original/pngtree-plant-growing-from-coins-png-image_15701887.png";
 
-function renderCareers(careers) {
-  const newcareers = document.getElementById("newcareers");
- 
- 
-  if (!careers.length) {
-    newcareers.innerHTML = "<p>No plan found</p>";
-    return;
-  }
+function renderJobs(data) {
+  if (!container) return;
 
-  let html = '';
-  careers.forEach(item => {
+  // split jobs
+  const headerJobs = data.filter(job => job.type === "header_job");
+  const openJobs = data.filter(job => job.type === "open_job");
 
-    // ✅ choose language dynamically
-    const description = currentLanguage === "kh" ? item.description_kh : item.description_en;
-    const ntitledescription_en = currentLanguage === "kh" ? item.ntitledescription_kh : item.ntitledescription_en;
-    const hr_description = currentLanguage === "kh" ? item.hr_description_kh  : item.hr_description_en;
-    const  descriptionvideo = currentLanguage === "kh" ? item.descriptionvideo_kh : item.descriptionvideo_en;
-    const  ntitle = currentLanguage === "kh" ? item.ntitle_kh : item.ntitle_en;
-    const  jointeam = currentLanguage === "kh" ? item.jointeam_kh : item.jointeam_en;
+  let html = "";
 
-     
+  // Render header jobs (usually only 1)
+  headerJobs.forEach(job => {
+     var titleheader = currentLanguage === "kh" ? job.titleheader_kh: job.titleheader_en;
+     var whychoose = currentLanguage === "kh" ? job.whychoose_kh: job.whychoose_en;
+     var careers = currentLanguage === "kh" ? job.careersds_kh: job.careersds_en;
+     var openposition = currentLanguage === "kh" ? job.openposition_kh: job.openposition_en;
     html += `
-                <!-- ================= LATEST UPDATES ================= -->
-                <div class="col-lg-6 mb-4">
-                    <h3 class="box-title title-font fw-bold"style="color: rgb(22, 72, 138) ;" data-en="${item.ntitle_en}" data-kh="${item.ntitle_kh}">${ntitle}</h3>
-                    <div class="placeholder-card">
-                        <img src="${item.post_img}"
-                            alt="news"
-                            onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg';">
-                    </div>
-                    <div class="placeholder-card-text">
-                        <h4 class="title-font fw-bold text-center" style="color: rgb(22,72,138)" data-en="${item.ntitledescription_en}" data-kh="${item.ntitledescription_kh}">${ntitledescription_en}</h4>
-                        <p class="title-font " style="color: black;" data-en="${item.description_en}" data-kh="${item.description_kh}">
-                            ${description}
-                        </p>
-                    </div>
-                </div>
+      <div class="row align-items-center">
+    <!-- Hero Text -->
+    <div class="col-lg-6 text-lg-start text-center mb-4 mb-lg-0">
+      <h1 class="fw-bold mb-2 title-font" style="color: rgb(22, 72, 138) ;" data-kh="${job.titleheader_kh}" data-en="${job.titleheader_en}">${titleheader}</h1>
+      <h2 class="h3 mt-2 mb-2 title-font"style="color: rgb(22, 72, 138) ;" data-en="${job.whychoose_en}" data-kh="${job.whychoose_kh}">${whychoose}</h2>
+      <p class="text-secondary title-font mt-2"data-en="${job.careersds_en}" data-kh="${job.careersds_kh}">${careers}</p>
+      <h5 class="fw-bold title-font mt-2" style="color: rgba(183, 145, 68, 1);" data-en="${job.openposition_en}" data-kh="${job.openposition_kh}">${openposition}</h5>
+    </div>
 
-                <!-- ================= JOIN OUR TEAM ================= -->
-                <div class="col-lg-6">
-                    <h3 class="box-title title-font"style="color: rgb(22, 72, 138) ;" data-en="${item.jointeam_en}" data-kh="${item.jointeam_kh}">${jointeam}</h3>
-                    <div class="placeholder-card career-card">
-                      
-                        <ul>
-                        <p class="title-font text-black" data-en="${item.hr_description_en}" data-kh="${item.hr_description_kh}">${hr_description}</p>
-                        </ul>
-
-                        <a href="https://t.me/c/2613477324/2/341" class="cv-btn">
-                            Apply Now
-                        </a>
-                    </div>
-
-                    <!-- ================= CAREER VIDEO ================= -->
-                    <div class="career-video mt-4">
-                        <div class="video-wrapper">
-                            <iframe id="companyVideo" src="${item.link_video}"
-                                title="Company Culture Video"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"                                
-                               >
-                            </iframe>
-                        </div>
-                        <p class="small-text mt-2 mt-2 title-font text-black" data-en="${item.descriptionvideo_en}" data-kh="${item.descriptionvideo_kh}">
-                            ${descriptionvideo}
-                        </p>
-                    </div>
-
-                </div>
-
+    <!-- Hero Image -->
+    <div class="col-lg-6 text-center">
+      <img src="${job.image_url || briefcaseIcon}" 
+           class="img-fluid rounded" 
+           alt="Professional Briefcase">
+    </div>
+  </div>
     `;
   });
-     newcareers.innerHTML = html;
-     
-    
 
+  // Render open jobs
+  openJobs.forEach((job, index) => {
+    var title = currentLanguage === "kh" ? job.title_kh : job.title_en;
+
+    html += `
+      <div class="job-card" data-index="${index}">
+        <div class="job-icon">
+          <img src="${job.image_url || briefcaseIcon}">
+        </div>
+        <div class="job-details">
+          <h3 class="title-font" data-en="${job.title_en}" data-kh="${job.title_kh}">
+            ${title}
+          </h3>
+          <div class="close-date">
+            Job Close: ${new Date(job.close_date).toLocaleDateString()}
+          </div>
+          <div class="job-tags">
+            <span><i class="bi bi-clock"></i> ${job.type}</span>
+            <span><i class="bi bi-building"></i> ${job.department}</span>
+            <span><i class="bi bi-geo-alt"></i> ${job.location}</span>
+          </div>
+        </div>
+        ${job.urgent ? `<div class="urgent-badge">🔥 Urgent</div>` : ""}
+      </div>
+      
+    `;
+  });
+
+  container.innerHTML = html;
+
+  // attach modal events
+  document.querySelectorAll(".job-card").forEach(card => {
+    card.addEventListener("click", () => {
+      openJobModal(openJobs[card.dataset.index]);
+    });
+  });
 }
+function openJobModal(job) {
+  document.getElementById("modal-title").innerText =
+    currentLanguage === "kh" ? job.title_kh : job.title_en;
 
+  document.getElementById("modal-close").innerHTML =
+    "<strong>Job Close:</strong> " +
+    new Date(job.close_date).toLocaleDateString();
+
+  document.getElementById("modal-type").innerHTML =
+    "<strong>Employment Type:</strong> " + job.types;
+
+  document.getElementById("modal-dept").innerHTML =
+    "<strong>Department:</strong> " + job.department;
+
+  document.getElementById("modal-location").innerHTML =
+    "<strong>Location:</strong> " + job.location;
+  
+  const applyLink = document.getElementById("apply_link").querySelector("a");
+  applyLink.href = job.apply_link;
+  applyLink.innerText = currentLanguage === "kh" ? "ដាក់ពាក្យនៅលើគេហទំព័រផ្លូវការ" : "Apply on OfficialSite";
+
+  document.getElementById("jobModal").style.display = "flex";
+}
+const modal = document.getElementById("jobModal");
+const closeBtn = document.querySelector(".close");
+
+if (modal && closeBtn) {
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+  window.onclick = e => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+}
 
 // ==================================
 // Initialize
@@ -675,7 +726,9 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchAndRender(apiMap.teams, renderTeam);
   fetchAndRender(apiMap.home, renderHome);
   fetchAndRender(apiMap.about, renderAbout);
-  fetchAndRender(apiMap.careers, renderCareers);
+  fetchAndRender(apiMap.data, renderJobs);
+
+  
 
 });
 // ==================================

@@ -5,6 +5,7 @@ const careers = (app) => {
   app.post("/api/careers/create",careersController.create);
   app.put("/api/careers/update/:id", careersController.update);
   app.delete("/api/careers/remove/:id", careersController.remove);
+  app.get("/api/careers/search/", careersController.search);
 
 };
 

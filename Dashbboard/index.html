@@ -62,7 +62,6 @@
         const data = await res.json();
 
         if (res.status === 401) {
-            // 🔴 បើ Token ផុតកំណត់ ឬខុស វានឹងចូលមកទីនេះ
             alert("Session របស់អ្នកអស់សុពលភាពហើយ សូម Login ម្តងទៀត!");
             localStorage.removeItem("admin_token"); // លុប Token ចោល
             window.location.href = "login.html";    // រុញទៅទំព័រ Login

@@ -66,22 +66,22 @@ function renderPlans(plans) {
         data-aos="fade-up">
 
         <div class="event-content w-100">
-          <h3 class="event-title h5 fw-bold mb-2"style="color: rgb(22, 72, 138) ;"
+          <h3 class="event-title title-font h5 fw-bold mb-2"style="color: rgb(22, 72, 138) ;"
               data-kh="${item.title_kh}"
               data-en="${item.title}">
             ${title}
           </h3>
 
           <div class="event-meta d-flex gap-3 mb-3 text-muted small">
-            <span>
-              <i class="bi bi-calendar-check me-1 text-primary"></i>
+            <span class="title-font">
+              <i class="bi bi-calendar-check me-1 text-primary "></i>
               ${item.datestart}
             </span>
           </div>
 
           <div class="event-courses border-top pt-3">
             <div class="d-flex justify-content-between align-items-center mb-2 p-2 rounded-2 bg-light-subtle hover-bg">
-              <p class="mb-0 text-secondary"
+              <p class="mb-0 text-secondary title-font"
                  data-en="${item.text}"
                  data-kh="${item.text_kh}">
                 <i class="bi bi-dot text-primary fs-4"></i>
@@ -134,7 +134,7 @@ function renderTeam(teams) {
           <div class="organization-card-team">
             <img src="${item.image_url}" class="img-fluid rounded" alt="">
             <div class="mt-2">
-              <h3 class="text-center fw-bold"
+              <h3 class="text-center fw-bold title-font"
                   data-en="${item.full_name}"
                   data-kh="${item.full_name_kh}">
                 ${name}
@@ -169,7 +169,7 @@ function renderTeam(teams) {
     <img src="${item.image_url}" class="team-img w-100">
 
     <div class="p-3">
-      <h5 class="fw-bold mb-1"
+      <h5 class="fw-bold mb-1 title-font"
           data-en="${item.full_name}"
           data-kh="${item.full_name_kh}">
         ${name}
@@ -212,7 +212,7 @@ function renderTeam(teams) {
          class="team-img w-100">
 
     <div class="p-3">
-      <h5 class="fw-bold mb-1"
+      <h5 class="fw-bold mb-1 title-font"
           data-en="${item.full_name}"
           data-kh="${item.full_name_kh}">
         ${name}
@@ -282,7 +282,7 @@ function renderHome(home) {
                   ${desc}
                 </h1>
               <p style="color: rgb(22, 72, 138); margin-top: -20px;" data-kh="${item.slogangp_kh}"
-                class="title-font" data-en="${slogangp}">${slogangp}</p>
+                class="title-font" data-en="${item.slogangp}">${slogangp}</p>
 
               <p class="title-font" style="color: gray;" data-kh="${item.slogan_kh}" data-en="${item.slogan}">${slogans}</p>
                 
@@ -313,7 +313,7 @@ function renderHome(home) {
               <i class="${item.icon_path || 'bi bi-easel'}"></i>
             </div>
             <div class="feature-content title-font">
-              <h3 style="color: rgb(22, 72, 138) ;"  data-en="${item.category_en}" data-kh="${item.category_kh}">
+              <h3 class="title-font" style="color: rgb(22, 72, 138) ;"  data-en="${item.category_en}" data-kh="${item.category_kh}">
                 ${title}
               </h3>
               <div class="desc-text" data-en="${item.description_en}" data-kh="${item.description_kh}">
@@ -350,7 +350,7 @@ function renderHome(home) {
             <div class="value-icon">
               <i class="${item.icon_path || 'bi bi-award-fill'}"></i>
             </div>
-            <h4 data-en="${item.category_en}" data-kh="${item.category_kh}" style="color: rgb(19, 73, 138);">
+            <h4 class="title-font" data-en="${item.category_en}" data-kh="${item.category_kh}" style="color: rgb(19, 73, 138);">
               ${title}
             </h4>
             <p data-en="${item.description_en}" data-kh="${item.description_kh}">
@@ -366,12 +366,12 @@ function renderHome(home) {
     if (item.type === "curriculum" && curriculum) {
       card = `
         <div class="col-xl-6">
-          <article class="post-item d-flex" style="background-color: rgba(12, 56, 115, 1) ">
+          <article class="post-item d-flex border border-2" style="background-color: rgba(22, 73, 139, 0.76) ">
             <div class="post-img">
               <img src="${item.img}" class="img-fluid" loading="lazy">
             </div>
             <div class="post-content flex-grow-1 align-items-center ">
-              <p class="post-description text-white "
+              <p class="post-description text-white title-font"
                  data-en="${item.description_en}"
                  data-kh="${item.description_kh}">
                 ${desc}
@@ -388,7 +388,6 @@ function renderHome(home) {
       card = `
        <div class="col-lg-6 col-md-6">
   <div class="event-item">
-
     <div class="event-image position-relative">
       <img src="${item.img}" class="img-fluid w-100 rounded">
 
@@ -401,7 +400,7 @@ function renderHome(home) {
     </div>
 
     <div class="event-details mt-2">
-      <p data-en="${item.description_en}" data-kh="${item.description_kh}">
+      <p class="title-font" data-en="${item.description_en}" data-kh="${item.description_kh}">
         ${desc}
       </p>
     </div>
@@ -422,14 +421,14 @@ function renderHome(home) {
          <!-- Text Column -->
         <div class="col-12">
           <div class="card-body p-4">
-            <h4 class="fw-bold  text-center" style="color: rgb(22, 72, 138) ;"
+            <h4 class="fw-bold title-font  text-center" style="color: rgb(22, 72, 138) ;"
                 data-en="${item.category_en}" data-kh="${item.category_kh}">
               ${title}
             </h4>
-            <p data-en="${item.description_en}" data-kh="${item.description_kh}">
+            <p class="title-font" data-en="${item.description_en}" data-kh="${item.description_kh}">
               ${desc}
             </p>
-            <a href="about.html" class="btn btn-sm" >See more.....</a>
+            <a href="about.html" class="btn btn-sm">See more.....</a>
           </div>
         </div>
 
@@ -482,12 +481,12 @@ function renderAbout(about) {
     /* ================= FINANCIAL ================= */
     if (item.type === "Financial" && training) {
       card = `
-        <div class="col-lg-6">
+        <div class="col-lg-6 ">
           <div class="value-card" style="background-color: rgba(183,145,68,1);">
             <div class="value-icon">
               <i class="bi bi-cash-coin text-light"></i>
             </div>
-            <h1 class="fw-bold text-light"
+            <h1 class="fw-bold text-light title-font"
                 data-en="${item.category_en}"
                 data-kh="${item.category_kh}">
               ${title}
@@ -508,7 +507,7 @@ function renderAbout(about) {
     /* ================= SKILLS ================= */
     if (item.type === "skills" && training) {
       card = `
-        <div class="col-lg-6">
+        <div class="col-lg-6 title-font">
           <div class="value-card" style="background-color: rgba(183,145,68,1);">
             <div class="value-icon">
               <i class="bi bi-people-fill text-light"></i>
@@ -534,12 +533,12 @@ function renderAbout(about) {
     /* ================= VISION ================= */
     if (item.type === "vission" && who) {
       card = `
-        <div class="col-lg-6">
+        <div class="col-lg-6 ">
           <div class="value-card">
             <div class="value-icon">
               <i class="bi bi-compass"></i>
             </div>
-            <h1 class="fw-bold" style="color: rgb(22,72,138);"
+            <h1 class="fw-bold title-font" style="color: rgb(22,72,138);"
                 data-en="${item.category_en}"
                 data-kh="${item.category_kh}">
               ${title}
@@ -565,7 +564,7 @@ function renderAbout(about) {
             <div class="value-icon">
               <i class="bi bi-rocket-takeoff"></i>
             </div>
-            <h1 class="fw-bold" style="color: rgb(22,72,138);"
+            <h1 class="fw-bold title-font" style="color: rgb(22,72,138);"
                 data-en="${item.category_en}"
                 data-kh="${item.category_kh}">
               ${title}
@@ -622,9 +621,9 @@ function renderJobs(data) {
      var careers = currentLanguage === "kh" ? job.careersds_kh: job.careersds_en;
      var openposition = currentLanguage === "kh" ? job.openposition_kh: job.openposition_en;
     html += `
-      <div class="row align-items-center">
+      <div class="row align-items-center" >
     <!-- Hero Text -->
-    <div class="col-lg-6 text-lg-start text-center mb-4 mb-lg-0">
+    <div class="col-lg-6 text-lg-start text-center mb-4 mb-lg-0" data-aos="fade-right"  data-aos-delay="200">
       <h1 class="fw-bold mb-2 title-font" style="color: rgb(22, 72, 138) ;" data-kh="${job.titleheader_kh}" data-en="${job.titleheader_en}">${titleheader}</h1>
       <h2 class="h3 mt-2 mb-2 title-font"style="color: rgb(22, 72, 138) ;" data-en="${job.whychoose_en}" data-kh="${job.whychoose_kh}">${whychoose}</h2>
       <p class="text-secondary title-font mt-2"data-en="${job.careersds_en}" data-kh="${job.careersds_kh}">${careers}</p>
@@ -632,7 +631,7 @@ function renderJobs(data) {
     </div>
 
     <!-- Hero Image -->
-    <div class="col-lg-6 text-center">
+    <div class="col-lg-6 text-center"  data-aos="fade-left"  data-aos-delay="200">
       <img src="${job.image_url || briefcaseIcon}" 
            class="img-fluid rounded" 
            alt="Professional Briefcase">
@@ -646,7 +645,8 @@ function renderJobs(data) {
     var title = currentLanguage === "kh" ? job.title_kh : job.title_en;
 
     html += `
-      <div class="job-card" data-index="${index}">
+      <div class="job-card"  data-index="${index}" data-aos="fade-up"
+                              data-aos-anchor-placement="bottom-bottom">
         <div class="job-icon">
           <img src="${job.image_url || briefcaseIcon}">
         </div>

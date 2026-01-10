@@ -862,7 +862,7 @@ section,
 
 .hero .hero-wrapper .hero-content p {
   font-size: 1.1rem;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
   line-height: 1.6;
 }
 

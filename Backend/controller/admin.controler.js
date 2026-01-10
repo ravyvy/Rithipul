@@ -5,7 +5,6 @@ const path = require('path');
 // ដោយសារ admin.controler.js នៅក្នុង folder controller 
 // យើងត្រូវថយក្រោយមួយជំហាន (..) រួចចូលទៅ folder database
 require('dotenv').config({ path: path.join(__dirname, '..', 'database', '.env') });
-
 const SECRET_KEY = process.env.SECRET_KEY; // 🔴 use same everywhere
 
 const login = async (req, res) => {

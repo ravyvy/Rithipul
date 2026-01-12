@@ -585,18 +585,39 @@ function renderAbout(about) {
     /* ================= BRAND ================= */
     if (item.type === "brand" && imglogo) {
       card = `
-       <div class="text-center">
-          <img src="${item.img_brand || ''}"
-       class="img-fluid"
-       style="height:400px;"
-       alt="${item.brand_name || 'Partner logo'}">
-          </div>
-
+        <div class="swiper-slide text-center bg-white"data-aos="zoom-in"  >
+          <img src="${item.img_brand}" 
+               alt="Brand Logo"
+               class="img-fluid" style="height:240px;  object-fit:contain;">
+        </div>
       `;
       imglogo.insertAdjacentHTML("beforeend", card);
     }
   });
+   if (imglogo) {
+    new Swiper(".mySwiperBrand", {
+      slidesPerView: 5,
+      slidesPerGroup: 1,
+      spaceBetween: 15,
+      loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+      breakpoints: {
+        0: { slidesPerView: 2 },
+        768: { slidesPerView: 3 },
+        1024: { slidesPerView: 5 }
+      }
+    });
+  }
 }
+
+
 // ======================================
 // careers jobs page newcareers
 // ======================================

@@ -28,8 +28,39 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-</head>
 
+  <!--  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+
+</head>
+<style>
+  
+ .swiper {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: white;
+  background: rgba(183, 145, 68, 1);;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 16px;
+}
+</style>
 <body class="about-page">
 
   <header id="header" class="header d-flex align-items-center sticky-top">
@@ -48,7 +79,8 @@
           <li><a href="about.html" class="title-font active" data-kh="អំពីយើង " data-en="About Us">About Us</a></li>
           <li><a href="events.html" class="title-font" data-kh="គម្រោងថ្មីៗ " data-en="New Plans">New Plans</a></li>
           <li><a href="ourteam.html" class="title-font" data-kh=" សមាជិកក្រុម " data-en="Our Team">Our Team</a></li>
-          <li><a href="newCareers.html" class="title-font " data-kh="ព័ត៌មាន និងការងារ"data-en="News & Careers">News & Careers</a></li>
+          <li><a href="newCareers.html" class="title-font " data-kh="ព័ត៌មាន និងការងារ" data-en="News & Careers">News &
+              Careers</a></li>
           <li><a href="contact.html" class="title-font" data-kh="  ទំនាក់ទំនង" data-en="Contact">Contact</a></li>
 
           <li class="nav-item">
@@ -69,8 +101,8 @@
     <!-- Page Title -->
     <div class="page-title light-background">
       <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0 title-font" style="color: rgba(183, 145, 68, 1);"   data-kh="អំពីយើង"
-          data-en="ABOUT US">ABOUT US
+        <h1 class="mb-2 mb-lg-0 title-font" style="color: rgba(183, 145, 68, 1);" data-kh="អំពីយើង" data-en="ABOUT US">
+          ABOUT US
         </h1>
         <nav class="breadcrumbs">
           <ol>
@@ -88,8 +120,8 @@
 
         <!-- about header -->
         <div class="row align-items-center g-3" id="head_about">
-      <!-- api -->
-          
+          <!-- api -->
+
         </div>
 
         <!-- start mision and vision -->
@@ -99,8 +131,8 @@
               <h3 class="text-center mb-4 title-font" style="color: rgb(22, 72, 138) ;" class="fw-bold title-font  "
                 data-kh="ការបណ្តុះបណ្តាលរបស់យើង" data-en="OUR TRAINING">OUR TRAINING
               </h3>
-              <p class="text-center text-secondary"
-                style="text-align: justify;  margin: auto; margin-bottom: 20px;" data-kh="
+              <p class="text-center text-secondary" style="text-align: justify;  margin: auto; margin-bottom: 20px;"
+                data-kh="
                   យើងខ្ញុំផ្តល់ជូននូវសេវាកម្មបណ្តុះបណ្តាលដែលមានគុណភាព ទាំងតាមអ៊ីនធឺណិត និងផ្ទាល់មាត់ ដល់អតិថិជន និងដៃគូ ដើម្បីបង្កើនប្រសិទ្ធភាពការងាររបស់ពួកគេ និងរួមគ្នាបង្កើតផលប៉ះពាល់យូរអង្វែងលើសង្គមកម្ពុជា និងអ្នកពាក់ព័ន្ធផ្សេងទៀត។
                 " data-en="We provide quality
                 training services, both Online and Face-to-face, to clients and partners to improve their performance
@@ -135,14 +167,19 @@
     </section><!-- /History Section -->
     <!--=============== our SUPPORTERS PARTNERS & CLIENTS =================-->
     <div class="main-logo title-font ">
-      <h2 class="text-center fw-bold mb-4 title-font" style="color: rgb(22, 72, 138);" data-kh="អ្នកគាំទ្រ ដៃគូ & អតិថិជនរបស់យើង​" data-en="OUR SUPPORTERS PARTNERS & CLIENTS">
+      <h2 class="text-center fw-bold mb-4 title-font" style="color: rgb(22, 72, 138);"
+        data-kh="អ្នកគាំទ្រ ដៃគូ & អតិថិជនរបស់យើង​" data-en="OUR SUPPORTERS PARTNERS & CLIENTS">
         OUR SUPPORTERS PARTNERS & CLIENTS
       </h2>
 
-      <div class="container text-center" id="imglogo">
-        
-      </div>
-    </div>
+<div class="swiper mySwiperBrand container mb-5">
+  <div class="swiper-wrapper" id="imglogo">
+    <!-- slides will be added by JS -->
+  </div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+</div>
+
 
     <!--=============== end our SUPPORTERS PARTNERS & CLIENTS =================-->
   </main>
@@ -154,13 +191,17 @@
           <h1 class="fw-bold title-font" style="font-size: 20px;color: rgba(183, 145, 68, 1);" data-kh="ឬទ្ធិពល"
             data-en="Rithipul">Rithipul</h1>
           <div class="footer-contact pt-3">
-            <p class="mt-3 "><strong class="title-font"data-en="Location:" data-kh="ទីតាំង:">Location:</strong> <span>#GE, ground floor, The KAMPUS, Phnom
+            <p class="mt-3 "><strong class="title-font" data-en="Location:" data-kh="ទីតាំង:">Location:</strong>
+              <span>#GE, ground floor, The KAMPUS, Phnom
                 Penh,
                 Cambodia. 120101</span></p>
-            <p class="mt-3 "><strong class="title-font"data-en="Phone number:" data-kh="លេខទូរសព្ទ:">Phone number:</strong> <span>+855-92-948-236</span></p>
-            <p><strong class="title-font" data-kh="អ៊ីមែល:" data-en="Email:">Email:</strong> <span>info@rithipul.com.kh</span></p>
+            <p class="mt-3 "><strong class="title-font" data-en="Phone number:" data-kh="លេខទូរសព្ទ:">Phone
+                number:</strong> <span>+855-92-948-236</span></p>
+            <p><strong class="title-font" data-kh="អ៊ីមែល:" data-en="Email:">Email:</strong>
+              <span>info@rithipul.com.kh</span></p>
             <p class="mt-3"><strong class="title-font" data-kh="គេហទំព័រ:" data-en="Website:">Website:</strong>
-              <span>www.rithipul.com.kh</span></p>
+              <span>www.rithipul.com.kh</span>
+            </p>
           </div>
           <div class="social-links d-flex mt-4">
             <a href="https://x.com/Rithipul_kh/status/1844613006480769298"><i class="bi bi-twitter-x"></i></a>
@@ -174,31 +215,30 @@
                 src="./assets/img/logo/feca.png " style="width: 35px; " alt=""></a>
             <a href="https://www.kotluy.com/en/home/"><img src="./assets/img/logo/Kotluy-LOGO-Green-Black.png "
                 style="width: 17px; " alt=""></a>
-            <a href="https://www.kbuon.com/"><img src="./assets/img/logo/kboun.webp"
-                style="width: 30px; " alt=""></a>
+            <a href="https://www.kbuon.com/"><img src="./assets/img/logo/kboun.webp" style="width: 30px; " alt=""></a>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-3 footer-links ">
-          <h4  class="title-font" data-kh="តំណភ្ជាប់មានប្រយោជន៍" data-en="Useful Links">Useful Links</h4>
+          <h4 class="title-font" data-kh="តំណភ្ជាប់មានប្រយោជន៍" data-en="Useful Links">Useful Links</h4>
           <ul>
             <li><a href="index.html" data-kh=" ទំព័រដើម" data-en="Home">Home</a></li>
             <li><a href="about.html" data-kh=" អំពីយើង " data-en="About">About us</a></li>
             <li><a href="events.html" data-kh="គម្រោងថ្មីៗ" data-en="New Plans">New Plans</a></li>
             <li><a href="ourteam.html" data-kh="ក្រុមការងាររបស់យើង " data-en="Our Team">Our Team</a></li>
-             <li><a href="newCareers.html" data-kh="ព័ត៌មាន និងការងារ"data-en="News & Careers">News & Careers</a></li>
+            <li><a href="newCareers.html" data-kh="ព័ត៌មាន និងការងារ" data-en="News & Careers">News & Careers</a></li>
             <li><a href="contact.html" data-kh="ទំនាក់ទំនង" data-en="Contact">Contact</a></li>
           </ul>
         </div>
 
         <div class="col-lg-3 col-md-3 footer-links">
-          <h4  class="title-font" data-kh="សេវាកម្មរបស់យើង" data-en="Our Services">Our Services</h4>
+          <h4 class="title-font" data-kh="សេវាកម្មរបស់យើង" data-en="Our Services">Our Services</h4>
           <ul>
             <li><a href="#" data-kh="ការបណ្តុះបណ្តាល" data-en="Training">Training</a></li>
             <li><a href="#" data-kh="ការប្រឹក្សា" data-en="Counseling">Counseling</a></li>
             <li><a href="#" data-kh="កម្មវិធីសិក្សា" data-en="Curriculum">Curriculum</a></li>
             <li>
-              <h4  class="title-font" data-kh="សេវាកម្មរបស់យើង" data-en="Who we are ?">Who we are ?</h4>
+              <h4 class="title-font" data-kh="សេវាកម្មរបស់យើង" data-en="Who we are ?">Who we are ?</h4>
             </li>
             <li><a href="#" data-kh="បេសកកម្ម " data-en="Mision">Mision</a></li>
             <li><a href="#" data-kh="ចក្ខុវិស័យ" data-en="Vision">Vision</a></li>
@@ -207,15 +247,17 @@
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4  class="title-font" data-kh="គេហទំព័រ" data-en="Website">Website</h4>
+          <h4 class="title-font" data-kh="គេហទំព័រ" data-en="Website">Website</h4>
           <ul>
-            <li><a href="https://rithipul.com.kh/" data-kh="ឬទ្ធិពល ដត ខម ដត ខេអេច" data-en="Rithipul.com.kh">Rithipul.com.kh</a></li>
+            <li><a href="https://rithipul.com.kh/" data-kh="ឬទ្ធិពល ដត ខម ដត ខេអេច"
+                data-en="Rithipul.com.kh">Rithipul.com.kh</a></li>
             <li><a href="#" data-kh="ឬទ្ធិពល" data-en="Rithipul">Rithipul</a></li>
             <li><a href="https://www.kbuon.com/" data-kh="ក្បួន" data-en="Kboun">Kboun</a></li>
             <li><a href="https://www.kotluy.com/en/home/" data-kh="កត់លុយ" data-en="kotluy">kotluy</a></li>
-            <li><a href="https://feca-cambodia.com/?fbclid=IwY2xjawO3GLdleHRuA2FlbQIxMABicmlkETFqNmVMZDhZNVNJM1FzaXB6c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHk6JGEGAW6t1r9I36qTuGrIKjWIdfbYw-l9k2jiqH2R9aVKALm7oghsnu-s__aem_l4HULcaXfkdLFtyNqHliNA " 
-              data-kh="ហ្វីកា" data-en="Feca">Feca</a></li>
-           
+            <li><a
+                href="https://feca-cambodia.com/?fbclid=IwY2xjawO3GLdleHRuA2FlbQIxMABicmlkETFqNmVMZDhZNVNJM1FzaXB6c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHk6JGEGAW6t1r9I36qTuGrIKjWIdfbYw-l9k2jiqH2R9aVKALm7oghsnu-s__aem_l4HULcaXfkdLFtyNqHliNA "
+                data-kh="ហ្វីកា" data-en="Feca">Feca</a></li>
+
           </ul>
         </div>
       </div>
@@ -253,6 +295,8 @@
   <!-- language and api -->
   <script src="assets/js/language.js"></script>
 
+  <!-- swiper -->
+   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 
 </html>
